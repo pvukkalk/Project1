@@ -1,0 +1,112 @@
+public class SmallBoard {
+    //~ Fields ................................................................
+    private String[][] board;
+    //~ Constructors ..........................................................
+    public SmallBoard() {
+        this.board = new String[3][3];
+    }
+    //~Public  Methods ........................................................
+    /**
+     * prints the board 
+     * @param board
+     */
+    public void displayBoard() {
+        
+        System.out.print("   0 1 2");
+        
+        for(int row = 0; row < 3; row++) {
+            System.out.print(row + "   ");
+            for(int col =0; col < 3; col++) {
+                if(board[row][col].equals(null)) {
+                    System.out.print("-" + " ");
+                }else {
+                    System.out.print(board[row][col]+" ");
+                }
+                System.out.println();
+            }
+        }
+    }
+    public String getCell(int row, int col) {
+        return board[row][col];
+    }
+    /**
+     * Place a description of your method here.
+     * @param board
+     * @return true if a winner e
+     */
+    public boolean isXWinner() {
+        if(board[0][0].equals("X") && board[0][1].equals("X")&& board[0][2] .equals("X")) {
+            return true;
+        }else if(board[0][2].equals("X") && board[1][2].equals("X") && board[2][2].equals("X") ) {
+            return true;
+        }else if( board[0][1].equals("X") && board[1][1].equals("X") && board[2][1].equals("X")) {
+            return true;
+        }else if (board[0][0].equals("X") && board[1][0].equals("X") && board[2][0].equals("X")) {
+            return true;
+        }else if (board[1][0].equals("X") && board[1][1].equals("X") && board[1][2].equals("X")) {
+            return true;
+        }else if (board[2][0].equals("X")&& board[2][1].equals("X") && board[2][2].equals("X")) {
+            return true;
+        }else if (board[0][2].equals("X") && board[1][1].equals("X")&& board[2][0].equals("X")) {
+            return true;
+        }else if(board[0][0].equals("X") && board[1][1].equals("X") && board[2][2].equals("X")) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+    public boolean isOWinner() {
+        if(board[0][0].equals("O") && board[0][1].equals("O") && board[0][2].equals("O")) {
+            return true;
+        }else if(board[0][2].equals("O")&& board[1][2].equals("O") && board[2][2].equals("O") ) {
+            return true;
+        }else if( board[0][1].equals("O") && board[1][1].equals("O") && board[2][1].equals("O")) {
+            return true;
+        }else if (board[0][0].equals("O") && board[1][0].equals("O") && board[2][0].equals("O")) {
+            return true;
+        }else if (board[1][0].equals("O") && board[1][1].equals("O") && board[1][2].equals("O")) {
+            return true;
+        }else if (board[2][0].equals("O") && board[2][1].equals("O") && board[2][2].equals("O")) {
+            return true;
+        }else if (board[0][2].equals("O") && board[1][1].equals("O") && board[2][0].equals("O")) {
+            return true;
+        }else if(board[0][0].equals("O") && board[1][1].equals("O") && board[2][2].equals("O")) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+    
+    /**
+     * Sets marker - does not check if spot is taken (make method)
+     * 
+     * @param marker
+     * @param moveRow
+     * @param moveCol
+     *  
+     */
+    public void makeMove(String marker, int moveRow, int moveCol){
+        board[moveRow][moveCol] = marker;
+    }
+    public  boolean openSpots() {
+        boolean result = false;
+        for(int row = 0; row < 3; row ++) {
+            for(int col = 0; col < 3; col++) {
+                if(board[row][col].equals(null)) {
+                    result = true;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+    public boolean isSpotOpen(int row, int col) {
+        if(board[row][col].equals(null)) {
+            return true;
+        }
+        return false;
+    }
+    
+
+    
+}
