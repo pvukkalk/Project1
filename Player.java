@@ -42,7 +42,7 @@ public class Player{
     
     /**
      * Updates move
-     * @param move - placement of marker
+     * @param moveRow - placement of marker
      */
     public void setMoveRow(int moveRow) {
         this.moveRow = moveRow;
@@ -50,7 +50,7 @@ public class Player{
     
     /**
      * Updates move
-     * @param move - placement of marker
+     * @param moveCol - placement of marker
      */
     public void setMoveCol(int moveCol) {
         this.moveCol = moveCol;
