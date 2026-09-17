@@ -8,7 +8,7 @@ import java.util.Scanner;
  * @author prvuk
  * @version Sep 16, 2026
  */
-public class Orchestator {
+public class Orchestrator {
 
     /**
      * Driver
