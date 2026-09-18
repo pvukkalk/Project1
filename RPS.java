@@ -14,7 +14,7 @@ public class RPS {
     
     
     /**
-     * Plays rock-paper-scissors, replaying on a tie, until a winner is
+     * Plays rock-paper-scissors, replaying on  tie, until a winner is
      * decided. Sets each object's choice field along the way.
      * @param input shared Scanner for reading player input
      * @param player the Player object
