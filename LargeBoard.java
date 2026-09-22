@@ -72,13 +72,39 @@ public class LargeBoard {
      */
     public void displayBoard() {
         System.out.println("\nLarge board:");
+        System.out.println("  0 1 2");
         for (int row = 0; row < 3; row++) {
-            StringBuilder line = new StringBuilder();
+            StringBuilder line = new StringBuilder(row + " ");
             for (int col = 0; col < 3; col++) {
                 String cell = board[row][col];
                 line.append(cell == null ? "-" : cell).append(" ");
             }
             System.out.println(line.toString().trim());
         }
+    }
+
+    /**
+     * Checks whether a specific spot is open.
+     * @param row row index (0-2)
+     * @param col column index (0-2)
+     * @return true if that cell is null
+     */
+    public boolean isSpotOpen(int row, int col) {
+        return board[row][col] == null;
+    }
+
+    /**
+     * Checks whether at least one small-board spot remains unclaimed.
+     * @return true if an unclaimed large-board spot exists
+     */
+    public boolean openSpots() {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (isSpotOpen(row, col)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

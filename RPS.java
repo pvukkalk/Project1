@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  *  Resolved a tie by playing rock-paper-sciccors between Player and Computer
  * 
- *  @author prvuk
+ *  @author Blake Adkins
  *  @version Sep 16, 2026
  */
 public class RPS {
@@ -63,7 +63,9 @@ public class RPS {
         String choice;
         while (true) {
             System.out.println("Choose rock, paper, or scissors: ");
-            choice = input.nextLine().trim().toLowerCase();
+            // next() works after numeric board input without consuming a
+            // leftover newline as an empty answer.
+            choice = input.next().trim().toLowerCase();
             if (choice.equals("rock") || choice.equals("paper") || choice.equals("scissors")) {
                 return choice;
             }
