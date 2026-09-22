@@ -5,8 +5,8 @@ import java.util.Scanner;
 /**
  * Drives the game - runs 9 small boards and tracks the large board.
  *
- * @author prvuk
- * @version Sep 16, 2026
+ * @author prvuk, Blake Adkins
+ * @version Sep 21, 2026
  */
 public class Orchestrator {
 
@@ -24,7 +24,7 @@ public class Orchestrator {
         String playerName = input.nextLine();
         Player player = new Player(playerName);
 
-        // setting Player object marker - player always gets first pick
+        // setting Player object marker
         System.out.println("Please select a marker, either O or X");
         String playerMarker = input.nextLine().trim().toUpperCase();
 
@@ -70,29 +70,51 @@ public class Orchestrator {
         // -------------Who goes first is now chosen---------------------
 
         String overallWinner = null;
-        outerLoop: for (int bigRow = 0; bigRow < 3; bigRow++) {
-            for (int bigCol = 0; bigCol < 3; bigCol++) {
-
-                // printing status of boards
-                SmallBoard board = smallBoards[bigRow][bigCol];
-                System.out.println("Playing small board (" + bigRow + ", "
-                    + bigCol + ") ");
+        while (largeBoard.openSpots()) {
+                // The player who is about to move selects the next small board.
+                largeBoard.displayBoard();
+                int bigBoardRow;
+                int bigBoardCol;
+                if (isPlayerTurn) {
+                    System.out.println(player.getName()
+                        + ", choose an open spot on the large board.");
+                    int[] bigBoardSpot = getValidPlayerMoveBigBoard(input,
+                        largeBoard);
+                    bigBoardRow = bigBoardSpot[0];
+                    bigBoardCol = bigBoardSpot[1];
+                }
+                else {
+                    int[] bigBoardSpot = computerRowColChoice(largeBoard);
+                    bigBoardRow = bigBoardSpot[0];
+                    bigBoardCol = bigBoardSpot[1];
+                    System.out.println("Computer chooses large-board spot ("
+                        + bigBoardRow + ", " + bigBoardCol + ").");
+                }
+                SmallBoard board = smallBoards[bigBoardRow][bigBoardCol];
+                System.out.println("Playing small board (" + bigBoardRow + ", "
+                    + bigBoardCol + ").");
                 board.displayBoard();
 
                 while (!board.isOWinner() && !board.isXWinner() && board
                     .openSpots()) {
 
                     if (isPlayerTurn) {
-                        playerTurnStatement();
-                        int[] move = getValidPlayerMove(input, board);
-                        board.makeMove(playerMarker, move[0], move[1]);
+                        playerTurnStatement(player.getName());
+                        int[] smallBoardSpot = getValidPlayerMove(input, board);
+                        int smallBoardRow = smallBoardSpot[0];
+                        int smallBoardCol = smallBoardSpot[1];
+                        board.makeMove(playerMarker, smallBoardRow,
+                            smallBoardCol);
                     }
                     else {
                         computerTurnStatement();
-                        int[] move = computerRowColChoice(board);
-                        System.out.println("Computer plays (" + move[0] + ", "
-                            + move[1] + ")");
-                        board.makeMove(computerMarker, move[0], move[1]);
+                        int[] smallBoardSpot = computerRowColChoice(board);
+                        int smallBoardRow = smallBoardSpot[0];
+                        int smallBoardCol = smallBoardSpot[1];
+                        System.out.println("Computer plays (" + smallBoardRow
+                            + ", " + smallBoardCol + ")");
+                        board.makeMove(computerMarker, smallBoardRow,
+                            smallBoardCol);
                     }
                     board.displayBoard();
                     isPlayerTurn = !isPlayerTurn;
@@ -100,24 +122,25 @@ public class Orchestrator {
 
                 // record the result of this small board on the large board
                 if (board.isXWinner()) {
-                    largeBoard.claimSpot(bigRow, bigCol, "X");
-                    System.out.println("X wins small board (" + bigRow + ", "
-                        + bigCol + ")!");
+                    largeBoard.claimSpot(bigBoardRow, bigBoardCol, "X");
+                    System.out.println("X wins small board (" + bigBoardRow
+                        + ", " + bigBoardCol + ")!");
                 }
                 else if (board.isOWinner()) {
-                    largeBoard.claimSpot(bigRow, bigCol, "O");
-                    System.out.println("O wins small board (" + bigRow + ", "
-                        + bigCol + ")!");
+                    largeBoard.claimSpot(bigBoardRow, bigBoardCol, "O");
+                    System.out.println("O wins small board (" + bigBoardRow
+                        + ", " + bigBoardCol + ")!");
                 }
                 else {
                     // board filled with no winner - break the tie with RPS
                     String tieWinner = RPS.resolveTie(input, player, computer);
-                    largeBoard.claimSpot(bigRow, bigCol, tieWinner);
+                    largeBoard.claimSpot(bigBoardRow, bigBoardCol, tieWinner);
                     String tieWinnerName = tieWinner.equals(playerMarker)
                         ? player.getName()
                         : "Computer";
                     System.out.println(tieWinnerName + " claims small board ("
-                        + bigRow + ", " + bigCol + ") via tiebreaker!");
+                        + bigBoardRow + ", " + bigBoardCol
+                        + ") via tiebreaker!");
                 }
 
                 largeBoard.displayBoard();
@@ -125,13 +148,12 @@ public class Orchestrator {
                 // check the large board for a winner after every small game
                 if (largeBoard.isWinner("X")) {
                     overallWinner = "X";
-                    break outerLoop;
+                    break;
                 }
                 else if (largeBoard.isWinner("O")) {
                     overallWinner = "O";
-                    break outerLoop;
+                    break;
                 }
-            }
         }
 
         // announce final result
@@ -164,8 +186,9 @@ public class Orchestrator {
     }
 
 
-    public static void playerTurnStatement() {
-        System.out.println("Your turn! Place your marker on a open spot.");
+    public static void playerTurnStatement(String playerName) {
+        System.out.println(playerName
+            + ", place your marker on an open spot in this small board.");
     }
 
 
@@ -173,16 +196,14 @@ public class Orchestrator {
         System.out.println("Computer turn.");
     }
 
-
-    public static int[] getValidPlayerMove(Scanner input, SmallBoard board) {
+    public static int[] getValidPlayerMoveBigBoard(Scanner input,
+        LargeBoard board) {
         int row;
         int col;
         while (true) {
-            System.out.println("Input row (0-2): ");
-            row = input.nextInt();
+            row = getCoordinate(input, "row");
 
-            System.out.println("Input col (0-2): ");
-            col = input.nextInt();
+            col = getCoordinate(input, "column");
 
             if (row < 0 || row > 2 || col < 0 || col > 2) {
                 System.out.println(
@@ -198,10 +219,59 @@ public class Orchestrator {
         return new int[] { row, col };
     }
 
+    public static int[] getValidPlayerMove(Scanner input, SmallBoard board) {
+        int row;
+        int col;
+        while (true) {
+            row = getCoordinate(input, "row");
+
+            col = getCoordinate(input, "column");
+
+            if (row < 0 || row > 2 || col < 0 || col > 2) {
+                System.out.println(
+                    "Row and column must both be between 0 and 2.");
+            }
+            else if (!board.isSpotOpen(row, col)) {
+                System.out.println("That spot is taken. Choose another.");
+            }
+            else {
+                break;
+            }
+        }
+        return new int[] { row, col };
+    }
+
+    /** Reads one board coordinate and rejects non-numeric input. */
+    public static int getCoordinate(Scanner input, String coordinateName) {
+        while (true) {
+            System.out.println("Enter " + coordinateName + " (0-2):");
+            if (input.hasNextInt()) {
+                return input.nextInt();
+            }
+            System.out.println("Please enter a number from 0 to 2 for the "
+                + coordinateName + ".");
+            input.next();
+        }
+    }
+
 
     // computer makes a row, col choice on random
     // limit: must choose an open spot.
     public static int[] computerRowColChoice(SmallBoard board) {
+        ArrayList<int[]> openCells = new ArrayList<>();
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (board.isSpotOpen(row, col)) {
+                    openCells.add(new int[] { row, col });
+                }
+            }
+        }
+        Random r = new Random();
+        return openCells.get(r.nextInt(openCells.size()));
+    }
+
+    /** Chooses an unclaimed spot on the large board at random. */
+    public static int[] computerRowColChoice(LargeBoard board) {
         ArrayList<int[]> openCells = new ArrayList<>();
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
