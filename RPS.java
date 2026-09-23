@@ -88,7 +88,7 @@ public class RPS {
      * @param computerChoice the computer's choice
      * @return positive if player wins, negative if computer wins, 0 if tie
      */
-    private static int compare(String playerChoice, String computerChoice) {
+    public static int compare(String playerChoice, String computerChoice) {
         if (playerChoice.equals(computerChoice)) {
             return 0;
         }
