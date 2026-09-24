@@ -2,7 +2,7 @@
  * Manages the large 3x3 board of claimed small-board markers, and checks
  * for an overall winner.
  *
- * @author prvuk
+ * @author advayiyer
  * @version Sep 16, 2026
  */
 public class LargeBoard {
