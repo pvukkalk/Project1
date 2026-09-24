@@ -38,4 +38,57 @@ java Orchestrator
 
 ---
 
-## System Architecture
+## System Diagram
+
+```mermaid
+classDiagram
+    class Player {
+        -String name
+        -String marker
+        -int moveRow
+        -int moveCol
+        -String choice
+        +Player(String name)
+        +toString() String
+    }
+
+    class Computer {
+        -String name
+        -String marker
+        -int moveRow
+        -int moveCol
+        -String choice
+        +Computer(String name)
+        +toString() String
+    }
+
+    class SmallBoard {
+        -String[][] board
+        +SmallBoard()
+        +displayBoard() void
+        +makeMove(String marker, int moveRow, int moveCol) void
+        +isWinner(String marker) boolean
+        +openSpots() boolean
+        +isSpotOpen(int row, int col) boolean
+    }
+
+    class RPS {
+        +resolveTie(Scanner input, Player player, Computer computer) String$
+    }
+
+    class Orchestrator {
+        +main(String[] args) void$
+        +determineFirstPicker() boolean$
+        +getValidPlayerMove(Scanner input, SmallBoard board) int[]$
+        +computerRowColChoice(SmallBoard board) int[]$
+    }
+
+    Orchestrator ..> Player
+    Orchestrator ..> Computer
+    Orchestrator ..> SmallBoard
+    Orchestrator ..> RPS : on tie
+    RPS ..> Player
+    RPS ..> Computer
+```
+
+Player and Computer each have a getter and setter for every field.
