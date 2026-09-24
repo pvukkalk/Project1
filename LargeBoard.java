@@ -19,7 +19,7 @@ public class LargeBoard {
  
     //~ Public Methods ........................................................
     /**
-     * Claims a spot on the large board with the given marker - called after
+     * Claims a spot on the large board with the given marker, used after
      * a small board is won (or a tie is broken via RPS).
      * @param row row index (0-2)
      * @param col column index (0-2)
