@@ -2,7 +2,7 @@
  * Manages the large 3x3 board of claimed small-board markers, and checks
  * for an overall winner.
  *
- * @author prvuk
+ * @author advayiyer
  * @version Sep 16, 2026
  */
 public class LargeBoard {
@@ -19,7 +19,7 @@ public class LargeBoard {
  
     //~ Public Methods ........................................................
     /**
-     * Claims a spot on the large board with the given marker - called after
+     * Claims a spot on the large board with the given marker, used after
      * a small board is won (or a tie is broken via RPS).
      * @param row row index (0-2)
      * @param col column index (0-2)

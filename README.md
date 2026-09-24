@@ -38,4 +38,77 @@ java Orchestrator
 
 ---
 
-## System Architecture
+## System Diagram
+
+```mermaid
+classDiagram
+    class Player {
+        -String name
+        -String marker
+        -int moveRow
+        -int moveCol
+        -String choice
+        +Player(String name)
+        +toString() String
+    }
+
+    class Computer {
+        -String name
+        -String marker
+        -int moveRow
+        -int moveCol
+        -String choice
+        +Computer(String name)
+        +toString() String
+    }
+
+    class SmallBoard {
+        -String[][] board
+        +SmallBoard()
+        +displayBoard() void
+        +makeMove(String marker, int row, int col) void
+        +isXWinner() boolean
+        +isOWinner() boolean
+        +isWinner() boolean
+        +openSpots() boolean
+        +isSpotOpen(int row, int col) boolean
+        +getCell(int row, int col) String
+    }
+
+    class LargeBoard {
+        -String[][] board
+        +LargeBoard()
+        +claimSpot(int row, int col, String marker) void
+        +isWinner(String marker) boolean
+        +openSpots() boolean
+        +isSpotOpen(int row, int col) boolean
+        +displayBoard() void
+        +getCell(int row, int col) String
+    }
+
+    class RPS {
+        +compare(String player, String computer) String
+        +getValidPlayerChoice(Scanner input) String
+        +getComputerChoice() String
+        +resolveTie(Scanner input, Player p, Computer c) String
+    }
+
+    class Orchestrator {
+        +main(String[] args) void
+        +determineFirstPicker() boolean
+        +getValidPlayerMove(Scanner input, SmallBoard board) int[]
+        +getCoordinate(Scanner input) int
+        +computerRowColChoice(SmallBoard board) int[]
+    }
+
+    LargeBoard --> SmallBoard : contains 9
+    Orchestrator ..> Player : creates
+    Orchestrator ..> Computer : creates
+    Orchestrator ..> LargeBoard : uses
+    Orchestrator ..> SmallBoard : loops through
+    Orchestrator ..> RPS : calls on tie
+    RPS ..> Player : reads from
+    RPS ..> Computer : reads from
+```
+
+Player and Computer each have a getter and setter for every field.
