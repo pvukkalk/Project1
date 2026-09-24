@@ -14,7 +14,7 @@ public class RPSTest {
     @Test
     void testComparePlayerWinsRockVsScissors() {
         int result = RPS.compare("rock", "scissors");
-        assertTrue(result > 0, "Rock should beat scissors");
+        assertTrue("Rock should beat scissors", result > 0);
     }
     
     /**
@@ -24,7 +24,7 @@ public class RPSTest {
     @Test
     void testComparePlayerWinsPaperVsRock() {
         int result = RPS.compare("paper", "rock");
-        assertTrue(result > 0, "Paper should beat rock");
+        assertTrue("Paper should beat rock", result > 0);
     }
     
     /**
@@ -34,7 +34,7 @@ public class RPSTest {
     @Test
     void testComparePlayerWinsScissorsVsPaper() {
         int result = RPS.compare("scissors", "paper");
-        assertTrue(result > 0, "Scissors should beat paper");
+        assertTrue("Scissors should beat paper", result > 0);
     }
     
     /**
@@ -44,7 +44,7 @@ public class RPSTest {
     @Test
     void testCompareComputerWinsPaperVsRock() {
         int result = RPS.compare("rock", "paper");
-        assertTrue(result < 0, "Rock should lose to paper");
+        assertTrue("Rock should lose to paper", result < 0);
     }
     
     /**
@@ -54,7 +54,7 @@ public class RPSTest {
     @Test
     void testCompareComputerWinsScissorsVsPaper() {
         int result = RPS.compare("paper", "scissors");
-        assertTrue(result < 0, "Paper should lose to scissors");
+        assertTrue("Paper should lose to scissors", result < 0);
     }
     
     /**
@@ -64,7 +64,7 @@ public class RPSTest {
     @Test
     void testCompareComputerWinsRockVsScissors() {
         int result = RPS.compare("scissors", "rock");
-        assertTrue(result < 0, "Scissors should lose to rock");
+        assertTrue("Scissors should lose to rock", result < 0);
     }
     
     /**
@@ -74,7 +74,7 @@ public class RPSTest {
     @Test
     void testCompareTieRockVsRock() {
         int result = RPS.compare("rock", "rock");
-        assertEquals(0, result, "Same choice should be a tie");
+        assertEquals("Same choice should be a tie", 0, result);
     }
     
     /**
@@ -84,7 +84,7 @@ public class RPSTest {
     @Test
     void testCompareTiePaperVsPaper() {
         int result = RPS.compare("paper", "paper");
-        assertEquals(0, result, "Same choice should be a tie");
+        assertEquals("Same choice should be a tie", 0, result);
     }
     
     /**
@@ -94,6 +94,6 @@ public class RPSTest {
     @Test
     void testCompareTieScissorsVsScissors() {
         int result = RPS.compare("scissors", "scissors");
-        assertEquals(0, result, "Same choice should be a tie");
+        assertEquals("Same choice should be a tie", 0, result);
     }
 }
