@@ -66,29 +66,49 @@ classDiagram
         -String[][] board
         +SmallBoard()
         +displayBoard() void
-        +makeMove(String marker, int moveRow, int moveCol) void
+        +makeMove(String marker, int row, int col) void
+        +isXWinner() boolean
+        +isOWinner() boolean
+        +isWinner() boolean
+        +openSpots() boolean
+        +isSpotOpen(int row, int col) boolean
+        +getCell(int row, int col) String
+    }
+
+    class LargeBoard {
+        -String[][] board
+        +LargeBoard()
+        +claimSpot(int row, int col, String marker) void
         +isWinner(String marker) boolean
         +openSpots() boolean
         +isSpotOpen(int row, int col) boolean
+        +displayBoard() void
+        +getCell(int row, int col) String
     }
 
     class RPS {
-        +resolveTie(Scanner input, Player player, Computer computer) String$
+        +compare(String player, String computer) String$
+        +getValidPlayerChoice(Scanner input) String$
+        +getComputerChoice() String$
+        +resolveTie(Scanner input, Player p, Computer c) String$
     }
 
     class Orchestrator {
         +main(String[] args) void$
         +determineFirstPicker() boolean$
         +getValidPlayerMove(Scanner input, SmallBoard board) int[]$
+        +getCoordinate(Scanner input) int$
         +computerRowColChoice(SmallBoard board) int[]$
     }
 
-    Orchestrator ..> Player
-    Orchestrator ..> Computer
-    Orchestrator ..> SmallBoard
-    Orchestrator ..> RPS : on tie
-    RPS ..> Player
-    RPS ..> Computer
+    LargeBoard --> SmallBoard : contains 9
+    Orchestrator ..> Player : creates
+    Orchestrator ..> Computer : creates
+    Orchestrator ..> LargeBoard : uses
+    Orchestrator ..> SmallBoard : loops through
+    Orchestrator ..> RPS : calls on tie
+    RPS ..> Player : reads from
+    RPS ..> Computer : reads from
 ```
 
 Player and Computer each have a getter and setter for every field.
