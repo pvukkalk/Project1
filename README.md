@@ -87,10 +87,10 @@ classDiagram
     }
 
     class RPS {
-        +compare(String player, String computer) String$
-        +getValidPlayerChoice(Scanner input) String$
-        +getComputerChoice() String$
-        +resolveTie(Scanner input, Player p, Computer c) String$
+        +compare(String player, String computer) String
+        +getValidPlayerChoice(Scanner input) String
+        +getComputerChoice() String
+        +resolveTie(Scanner input, Player p, Computer c) String
     }
 
     class Orchestrator {
