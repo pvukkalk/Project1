@@ -78,7 +78,7 @@ public class SmallBoard {
      * @param marker "X" or "O"
      * @return true if marker has won this board
      */
-    private boolean isWinner(String marker) {
+    public boolean isWinner(String marker) {
         for (int row = 0; row < 3; row++) {
             if (marker.equals(board[row][0]) && marker.equals(board[row][1])
                     && marker.equals(board[row][2])) {
