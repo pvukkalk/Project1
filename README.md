@@ -94,11 +94,11 @@ classDiagram
     }
 
     class Orchestrator {
-        +main(String[] args) void$
-        +determineFirstPicker() boolean$
-        +getValidPlayerMove(Scanner input, SmallBoard board) int[]$
-        +getCoordinate(Scanner input) int$
-        +computerRowColChoice(SmallBoard board) int[]$
+        +main(String[] args) void
+        +determineFirstPicker() boolean
+        +getValidPlayerMove(Scanner input, SmallBoard board) int[]
+        +getCoordinate(Scanner input) int
+        +computerRowColChoice(SmallBoard board) int[]
     }
 
     LargeBoard --> SmallBoard : contains 9
