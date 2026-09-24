@@ -12,7 +12,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testPlayerConstructorNormal() {
+    public void testPlayerConstructorNormal() {
         Player player = new Player("Alice");
         assertEquals("Alice", player.getName());
     }
@@ -22,7 +22,7 @@ public class PlayerTest {
      * Bad input case.
      */
     @Test
-    void testPlayerConstructorEmpty() {
+    public void testPlayerConstructorEmpty() {
         Player player = new Player("");
         assertEquals("", player.getName());
     }
@@ -32,7 +32,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetMarkerX() {
+    public void testSetMarkerX() {
         Player player = new Player("Bob");
         player.setMarker("X");
         assertEquals("X", player.getMarker());
@@ -43,7 +43,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetMarkerO() {
+    public void testSetMarkerO() {
         Player player = new Player("Bob");
         player.setMarker("O");
         assertEquals("O", player.getMarker());
@@ -54,7 +54,7 @@ public class PlayerTest {
      * Bad input case: no validation in setter.
      */
     @Test
-    void testSetMarkerInvalid() {
+    public void testSetMarkerInvalid() {
         Player player = new Player("Bob");
         player.setMarker("Z");
         assertEquals("Z", player.getMarker());
@@ -65,7 +65,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetName() {
+    public void testSetName() {
         Player player = new Player("Alice");
         player.setName("Charlie");
         assertEquals("Charlie", player.getName());
@@ -76,7 +76,7 @@ public class PlayerTest {
      * Bad input case.
      */
     @Test
-    void testSetNameEmpty() {
+    public void testSetNameEmpty() {
         Player player = new Player("Alice");
         player.setName("");
         assertEquals("", player.getName());
@@ -87,7 +87,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetMoveRow() {
+    public void testSetMoveRow() {
         Player player = new Player("Alice");
         player.setMoveRow(1);
         assertEquals(1, player.getMoveRow());
@@ -98,7 +98,7 @@ public class PlayerTest {
      * Bad input case: setter does not validate.
      */
     @Test
-    void testSetMoveRowOutOfBounds() {
+    public void testSetMoveRowOutOfBounds() {
         Player player = new Player("Alice");
         player.setMoveRow(5);
         assertEquals(5, player.getMoveRow());
@@ -109,7 +109,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetMoveCol() {
+    public void testSetMoveCol() {
         Player player = new Player("Alice");
         player.setMoveCol(2);
         assertEquals(2, player.getMoveCol());
@@ -120,7 +120,7 @@ public class PlayerTest {
      * Bad input case: setter does not validate.
      */
     @Test
-    void testSetMoveColOutOfBounds() {
+    public void testSetMoveColOutOfBounds() {
         Player player = new Player("Alice");
         player.setMoveCol(10);
         assertEquals(10, player.getMoveCol());
@@ -131,7 +131,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetChoiceRock() {
+    public void testSetChoiceRock() {
         Player player = new Player("Alice");
         player.setChoice("rock");
         assertEquals("rock", player.getChoice());
@@ -142,7 +142,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetChoicePaper() {
+    public void testSetChoicePaper() {
         Player player = new Player("Alice");
         player.setChoice("paper");
         assertEquals("paper", player.getChoice());
@@ -153,7 +153,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testSetChoiceScissors() {
+    public void testSetChoiceScissors() {
         Player player = new Player("Alice");
         player.setChoice("scissors");
         assertEquals("scissors", player.getChoice());
@@ -164,7 +164,7 @@ public class PlayerTest {
      * Bad input case: setter does not validate.
      */
     @Test
-    void testSetChoiceInvalid() {
+    public void testSetChoiceInvalid() {
         Player player = new Player("Alice");
         player.setChoice("invalid");
         assertEquals("invalid", player.getChoice());
@@ -175,7 +175,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testToString() {
+    public void testToString() {
         Player player = new Player("Alice");
         player.setMarker("X");
         String expected = "Alice plays with the X marker.";
@@ -187,7 +187,7 @@ public class PlayerTest {
      * Normal case.
      */
     @Test
-    void testToStringO() {
+    public void testToStringO() {
         Player player = new Player("Bob");
         player.setMarker("O");
         String expected = "Bob plays with the O marker.";

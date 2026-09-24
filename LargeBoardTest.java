@@ -12,7 +12,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testLargeBoardConstructor() {
+    public void testLargeBoardConstructor() {
         LargeBoard board = new LargeBoard();
         assertNull(board.getCell(0, 0));
         assertNull(board.getCell(2, 2));
@@ -23,7 +23,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testClaimSpotNormal() {
+    public void testClaimSpotNormal() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(0, 0, "X");
         assertEquals("X", board.getCell(0, 0));
@@ -34,7 +34,7 @@ public class LargeBoardTest {
      * Bad input case: overwriting.
      */
     @Test
-    void testClaimSpotOverwrite() {
+    public void testClaimSpotOverwrite() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(1, 1, "X");
         board.claimSpot(1, 1, "O");
@@ -46,7 +46,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testGetCellEmpty() {
+    public void testGetCellEmpty() {
         LargeBoard board = new LargeBoard();
         assertNull(board.getCell(0, 0));
     }
@@ -56,7 +56,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testGetCellClaimed() {
+    public void testGetCellClaimed() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(2, 2, "O");
         assertEquals("O", board.getCell(2, 2));
@@ -67,7 +67,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testIsWinnerHorizontalX() {
+    public void testIsWinnerHorizontalX() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(0, 0, "X");
         board.claimSpot(0, 1, "X");
@@ -80,7 +80,7 @@ public class LargeBoardTest {
      * Bad input case: no winner.
      */
     @Test
-    void testIsWinnerEmpty() {
+    public void testIsWinnerEmpty() {
         LargeBoard board = new LargeBoard();
         assertFalse(board.isWinner("X"));
         assertFalse(board.isWinner("O"));
@@ -91,7 +91,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testIsWinnerVerticalO() {
+    public void testIsWinnerVerticalO() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(0, 1, "O");
         board.claimSpot(1, 1, "O");
@@ -104,7 +104,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testIsWinnerDiagonalX() {
+    public void testIsWinnerDiagonalX() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(0, 0, "X");
         board.claimSpot(1, 1, "X");
@@ -117,7 +117,7 @@ public class LargeBoardTest {
      * Bad input case: wrong marker.
      */
     @Test
-    void testIsWinnerWrongMarker() {
+    public void testIsWinnerWrongMarker() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(0, 0, "O");
         board.claimSpot(0, 1, "O");
@@ -130,7 +130,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testDisplayBoardEmpty() {
+    public void testDisplayBoardEmpty() {
         LargeBoard board = new LargeBoard();
         board.displayBoard();
     }
@@ -140,7 +140,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testDisplayBoardFull() {
+    public void testDisplayBoardFull() {
         LargeBoard board = new LargeBoard();
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -155,7 +155,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testIsSpotOpenTrue() {
+    public void testIsSpotOpenTrue() {
         LargeBoard board = new LargeBoard();
         assertTrue(board.isSpotOpen(0, 0));
     }
@@ -165,7 +165,7 @@ public class LargeBoardTest {
      * Bad input case: claimed cell.
      */
     @Test
-    void testIsSpotOpenFalse() {
+    public void testIsSpotOpenFalse() {
         LargeBoard board = new LargeBoard();
         board.claimSpot(0, 0, "X");
         assertFalse(board.isSpotOpen(0, 0));
@@ -176,7 +176,7 @@ public class LargeBoardTest {
      * Normal case.
      */
     @Test
-    void testOpenSpotsTrue() {
+    public void testOpenSpotsTrue() {
         LargeBoard board = new LargeBoard();
         assertTrue(board.openSpots());
     }
@@ -186,7 +186,7 @@ public class LargeBoardTest {
      * Bad input case: full board.
      */
     @Test
-    void testOpenSpotsFalse() {
+    public void testOpenSpotsFalse() {
         LargeBoard board = new LargeBoard();
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {

@@ -12,7 +12,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testComputerConstructor() {
+    public void testComputerConstructor() {
         Computer computer = new Computer();
         assertEquals("Computer", computer.getName());
     }
@@ -22,7 +22,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testGetMarkerInitial() {
+    public void testGetMarkerInitial() {
         Computer computer = new Computer();
         assertNull(computer.getMarker());
     }
@@ -32,7 +32,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetMarkerX() {
+    public void testSetMarkerX() {
         Computer computer = new Computer();
         computer.setMarker("X");
         assertEquals("X", computer.getMarker());
@@ -43,7 +43,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetMarkerO() {
+    public void testSetMarkerO() {
         Computer computer = new Computer();
         computer.setMarker("O");
         assertEquals("O", computer.getMarker());
@@ -54,7 +54,7 @@ public class ComputerTest {
      * Bad input case: setter does not validate.
      */
     @Test
-    void testSetMarkerInvalid() {
+    public void testSetMarkerInvalid() {
         Computer computer = new Computer();
         computer.setMarker("Z");
         assertEquals("Z", computer.getMarker());
@@ -65,7 +65,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetName() {
+    public void testSetName() {
         Computer computer = new Computer();
         computer.setName("AI");
         assertEquals("AI", computer.getName());
@@ -76,7 +76,7 @@ public class ComputerTest {
      * Bad input case.
      */
     @Test
-    void testSetNameEmpty() {
+    public void testSetNameEmpty() {
         Computer computer = new Computer();
         computer.setName("");
         assertEquals("", computer.getName());
@@ -87,7 +87,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetMoveRow() {
+    public void testSetMoveRow() {
         Computer computer = new Computer();
         computer.setMoveRow(0);
         assertEquals(0, computer.getMoveRow());
@@ -98,7 +98,7 @@ public class ComputerTest {
      * Bad input case: setter does not validate.
      */
     @Test
-    void testSetMoveRowOutOfBounds() {
+    public void testSetMoveRowOutOfBounds() {
         Computer computer = new Computer();
         computer.setMoveRow(10);
         assertEquals(10, computer.getMoveRow());
@@ -109,7 +109,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetMoveCol() {
+    public void testSetMoveCol() {
         Computer computer = new Computer();
         computer.setMoveCol(2);
         assertEquals(2, computer.getMoveCol());
@@ -120,7 +120,7 @@ public class ComputerTest {
      * Bad input case: setter does not validate.
      */
     @Test
-    void testSetMoveColOutOfBounds() {
+    public void testSetMoveColOutOfBounds() {
         Computer computer = new Computer();
         computer.setMoveCol(15);
         assertEquals(15, computer.getMoveCol());
@@ -131,7 +131,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetChoiceRock() {
+    public void testSetChoiceRock() {
         Computer computer = new Computer();
         computer.setChoice("rock");
         assertEquals("rock", computer.getChoice());
@@ -142,7 +142,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetChoicePaper() {
+    public void testSetChoicePaper() {
         Computer computer = new Computer();
         computer.setChoice("paper");
         assertEquals("paper", computer.getChoice());
@@ -153,7 +153,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testSetChoiceScissors() {
+    public void testSetChoiceScissors() {
         Computer computer = new Computer();
         computer.setChoice("scissors");
         assertEquals("scissors", computer.getChoice());
@@ -164,7 +164,7 @@ public class ComputerTest {
      * Bad input case: setter does not validate.
      */
     @Test
-    void testSetChoiceInvalid() {
+    public void testSetChoiceInvalid() {
         Computer computer = new Computer();
         computer.setChoice("invalid");
         assertEquals("invalid", computer.getChoice());
@@ -175,7 +175,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testToStringX() {
+    public void testToStringX() {
         Computer computer = new Computer();
         computer.setMarker("X");
         String expected = "Computer plays the (X) marker.";
@@ -187,7 +187,7 @@ public class ComputerTest {
      * Normal case.
      */
     @Test
-    void testToStringO() {
+    public void testToStringO() {
         Computer computer = new Computer();
         computer.setMarker("O");
         String expected = "Computer plays the (O) marker.";

@@ -12,7 +12,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testSmallBoardConstructor() {
+    public void testSmallBoardConstructor() {
         SmallBoard board = new SmallBoard();
         assertNull(board.getCell(0, 0));
         assertNull(board.getCell(2, 2));
@@ -23,7 +23,7 @@ public class SmallBoardTest {
      * Normal case (output goes to stdout).
      */
     @Test
-    void testDisplayBoardEmpty() {
+    public void testDisplayBoardEmpty() {
         SmallBoard board = new SmallBoard();
         // Should not throw
         board.displayBoard();
@@ -34,7 +34,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testDisplayBoardFull() {
+    public void testDisplayBoardFull() {
         SmallBoard board = new SmallBoard();
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -50,7 +50,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testGetCellEmpty() {
+    public void testGetCellEmpty() {
         SmallBoard board = new SmallBoard();
         assertNull(board.getCell(1, 1));
     }
@@ -60,7 +60,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testGetCellFilled() {
+    public void testGetCellFilled() {
         SmallBoard board = new SmallBoard();
         board.makeMove("X", 0, 0);
         assertEquals("X", board.getCell(0, 0));
@@ -71,7 +71,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testIsXWinnerEmpty() {
+    public void testIsXWinnerEmpty() {
         SmallBoard board = new SmallBoard();
         assertFalse(board.isXWinner());
     }
@@ -81,7 +81,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testIsXWinnerHorizontal() {
+    public void testIsXWinnerHorizontal() {
         SmallBoard board = new SmallBoard();
         board.makeMove("X", 0, 0);
         board.makeMove("X", 0, 1);
@@ -94,7 +94,7 @@ public class SmallBoardTest {
      * Bad input case: wrong marker.
      */
     @Test
-    void testIsXWinnerButOWon() {
+    public void testIsXWinnerButOWon() {
         SmallBoard board = new SmallBoard();
         board.makeMove("O", 1, 0);
         board.makeMove("O", 1, 1);
@@ -107,7 +107,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testIsOWinnerEmpty() {
+    public void testIsOWinnerEmpty() {
         SmallBoard board = new SmallBoard();
         assertFalse(board.isOWinner());
     }
@@ -117,7 +117,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testIsOWinnerVertical() {
+    public void testIsOWinnerVertical() {
         SmallBoard board = new SmallBoard();
         board.makeMove("O", 0, 1);
         board.makeMove("O", 1, 1);
@@ -130,7 +130,7 @@ public class SmallBoardTest {
      * Bad input case: wrong marker.
      */
     @Test
-    void testIsOWinnerButXWon() {
+    public void testIsOWinnerButXWon() {
         SmallBoard board = new SmallBoard();
         board.makeMove("X", 0, 0);
         board.makeMove("X", 1, 1);
@@ -143,7 +143,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testIsWinnerXDiagonal() {
+    public void testIsWinnerXDiagonal() {
         SmallBoard board = new SmallBoard();
         board.makeMove("X", 0, 0);
         board.makeMove("X", 1, 1);
@@ -156,7 +156,7 @@ public class SmallBoardTest {
      * Bad input case: no winner.
      */
     @Test
-    void testIsWinnerEmpty() {
+    public void testIsWinnerEmpty() {
         SmallBoard board = new SmallBoard();
         assertFalse(board.isWinner("X"));
         assertFalse(board.isWinner("O"));
@@ -167,7 +167,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testMakeMoveNormal() {
+    public void testMakeMoveNormal() {
         SmallBoard board = new SmallBoard();
         board.makeMove("X", 1, 2);
         assertEquals("X", board.getCell(1, 2));
@@ -178,7 +178,7 @@ public class SmallBoardTest {
      * Bad input case: occupied cell.
      */
     @Test
-    void testMakeMoveOverwrite() {
+    public void testMakeMoveOverwrite() {
         SmallBoard board = new SmallBoard();
         board.makeMove("X", 0, 0);
         board.makeMove("O", 0, 0);
@@ -190,7 +190,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testOpenSpotsTrue() {
+    public void testOpenSpotsTrue() {
         SmallBoard board = new SmallBoard();
         assertTrue(board.openSpots());
     }
@@ -200,7 +200,7 @@ public class SmallBoardTest {
      * Bad input case: full board.
      */
     @Test
-    void testOpenSpotsFalse() {
+    public void testOpenSpotsFalse() {
         SmallBoard board = new SmallBoard();
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -215,7 +215,7 @@ public class SmallBoardTest {
      * Normal case.
      */
     @Test
-    void testIsSpotOpenTrue() {
+    public void testIsSpotOpenTrue() {
         SmallBoard board = new SmallBoard();
         assertTrue(board.isSpotOpen(0, 0));
     }
@@ -225,7 +225,7 @@ public class SmallBoardTest {
      * Bad input case: occupied cell.
      */
     @Test
-    void testIsSpotOpenFalse() {
+    public void testIsSpotOpenFalse() {
         SmallBoard board = new SmallBoard();
         board.makeMove("X", 2, 2);
         assertFalse(board.isSpotOpen(2, 2));

@@ -12,7 +12,7 @@ public class RPSTest {
      * Normal case: player wins.
      */
     @Test
-    void testComparePlayerWinsRockVsScissors() {
+    public void testComparePlayerWinsRockVsScissors() {
         int result = RPS.compare("rock", "scissors");
         assertTrue("Rock should beat scissors", result > 0);
     }
@@ -22,7 +22,7 @@ public class RPSTest {
      * Normal case: player wins.
      */
     @Test
-    void testComparePlayerWinsPaperVsRock() {
+    public void testComparePlayerWinsPaperVsRock() {
         int result = RPS.compare("paper", "rock");
         assertTrue("Paper should beat rock", result > 0);
     }
@@ -32,7 +32,7 @@ public class RPSTest {
      * Normal case: player wins.
      */
     @Test
-    void testComparePlayerWinsScissorsVsPaper() {
+    public void testComparePlayerWinsScissorsVsPaper() {
         int result = RPS.compare("scissors", "paper");
         assertTrue("Scissors should beat paper", result > 0);
     }
@@ -42,7 +42,7 @@ public class RPSTest {
      * Normal case: computer wins.
      */
     @Test
-    void testCompareComputerWinsPaperVsRock() {
+    public void testCompareComputerWinsPaperVsRock() {
         int result = RPS.compare("rock", "paper");
         assertTrue("Rock should lose to paper", result < 0);
     }
@@ -52,7 +52,7 @@ public class RPSTest {
      * Normal case: computer wins.
      */
     @Test
-    void testCompareComputerWinsScissorsVsPaper() {
+    public void testCompareComputerWinsScissorsVsPaper() {
         int result = RPS.compare("paper", "scissors");
         assertTrue("Paper should lose to scissors", result < 0);
     }
@@ -62,7 +62,7 @@ public class RPSTest {
      * Normal case: computer wins.
      */
     @Test
-    void testCompareComputerWinsRockVsScissors() {
+    public void testCompareComputerWinsRockVsScissors() {
         int result = RPS.compare("scissors", "rock");
         assertTrue("Scissors should lose to rock", result < 0);
     }
@@ -72,7 +72,7 @@ public class RPSTest {
      * Bad input case: tie (should replay per spec).
      */
     @Test
-    void testCompareTieRockVsRock() {
+    public void testCompareTieRockVsRock() {
         int result = RPS.compare("rock", "rock");
         assertEquals("Same choice should be a tie", 0, result);
     }
@@ -82,7 +82,7 @@ public class RPSTest {
      * Bad input case: tie.
      */
     @Test
-    void testCompareTiePaperVsPaper() {
+    public void testCompareTiePaperVsPaper() {
         int result = RPS.compare("paper", "paper");
         assertEquals("Same choice should be a tie", 0, result);
     }
@@ -92,7 +92,7 @@ public class RPSTest {
      * Bad input case: tie.
      */
     @Test
-    void testCompareTieScissorsVsScissors() {
+    public void testCompareTieScissorsVsScissors() {
         int result = RPS.compare("scissors", "scissors");
         assertEquals("Same choice should be a tie", 0, result);
     }
